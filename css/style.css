@@ -232,6 +232,11 @@ button {
     overflow: hidden;
 }
 
+.post__body p {
+    margin-bottom: 1.5rem; /* Adjust the value as needed */
+    line-height: 1.7;
+}
+
 /* ===========FEATURED========== */
 
 .featured {

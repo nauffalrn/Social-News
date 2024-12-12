@@ -4,7 +4,8 @@ require 'config/database.php';
 if(isset($_POST['submit'])) {
     $author_id = $_SESSION['user-id'];
     $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $body = filter_var($_POST['body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    // Allow <b> and <strong> tags in the body
+    $body = strip_tags($_POST['body'], '<b><strong><p><br>');
     $category_id = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
     $is_featured = filter_var($_POST['is_featured'], FILTER_SANITIZE_NUMBER_INT);
     $thumbnail = $_FILES['thumbnail'];

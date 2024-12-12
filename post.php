@@ -12,6 +12,10 @@ if (isset($_GET['id'])) {
 }
 ?>
 
+<?php
+    // Allow <b> and <strong> tags and convert line breaks to <br> for proper formatting
+    $body = nl2br(strip_tags($post['body'], '<b><strong>'));
+?>
 
     
     <section class="singlepost">
@@ -40,9 +44,9 @@ if (isset($_GET['id'])) {
             <div class="singlepost__thumbnail">
                 <img src="./images/<?= $post['thumbnail'] ?>">
             </div>
-            <p>
-                <?= $post['body'] ?>
-            </p>
+            <div class="post__body">
+                <?= $body ?>
+            </div>
         </div>
     </section>
     <!--END OF SINGLE POST-->
