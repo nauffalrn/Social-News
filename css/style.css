@@ -843,5 +843,20 @@ input, textarea, select {
     #hide__sidebar-btn {
         display: none;
     }
+    /* ===========ABOUT========== */
+    body {
+        padding-top: 70px; /* Kompensasi tinggi header */
+    }
+    
+    .about__page {
+        margin: 0 auto;
+        max-width: 1200px;
+        text-align: left;
+        color: white;
+    }
+
 
 }
+
+
+
