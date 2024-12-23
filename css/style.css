@@ -237,6 +237,17 @@ button {
     line-height: 1.7;
 }
 
+
+/* ==========CONTACT US========== */
+
+.contact__container {
+    padding: 2rem; 
+}
+
+.contact__container p {
+    margin-bottom: 2rem;
+}
+
 /* ==========SERVICES========== */
 
 .services {
@@ -886,6 +897,10 @@ input, textarea, select {
 
     #hide__sidebar-btn {
         display: none;
+    }
+
+    .contact__container {
+        padding: 1rem;
     }
     /* ===========ABOUT========== */
     body {

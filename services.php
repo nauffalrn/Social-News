@@ -2,7 +2,7 @@
 
 <section class="services">
     <div class="container services__container">
-        <h1>Our Services</h1>
+        <h1>Layanan Kami</h1>
         <p>Selamat datang di Social News, sumber utama Anda untuk semua berita dan informasi terkini.
             Kami menawarkan berbagai layanan yang dirancang untuk memenuhi kebutuhan berita Anda dan memberikan pengalaman yang memuaskan.
             Dengan menggunakan Social News, Anda dapat menemukan berita terbaru dan terkini dari berbagai kategori, berinteraksi dengan komunitas yang bersemangat, dan tetap terhubung dengan dunia di sekitar Anda.
