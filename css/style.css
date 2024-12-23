@@ -237,6 +237,50 @@ button {
     line-height: 1.7;
 }
 
+/* ==========SERVICES========== */
+
+.services {
+    padding: 4rem 0;
+    background-color: var(--color-gray-900);
+    color: var(--color-white);
+}
+
+.services__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.services__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.service {
+    background-color: var(--color-primary-light);
+    padding: 2rem;
+    border-radius: var(--card-border-radius-2);
+    flex: 1 1 250px;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.service:hover {
+    transform: translateY(-10px);
+}
+
+.service h3 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.service p {
+    color: var(--color-gray-200);
+}
+
 /* ===========FEATURED========== */
 
 .featured {
