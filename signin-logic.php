@@ -25,13 +25,13 @@ if (isset($_POST['submit'])) {
                 // Set session for access control
                 $_SESSION['user-id'] = $user['id'];
 
-                // Set session if user is admin
+                // Redirect based on user role
                 if ($user['is_admin'] == 1) {
                     $_SESSION['user_is_admin'] = true;
+                    header('location: ' . ROOT_URL . 'admin/');
+                } else {
+                    header('location: ' . ROOT_URL . 'index.php');
                 }
-
-                // Log user in
-                header('location: ' . ROOT_URL . 'admin/');
                 die();
             } else {
                 $_SESSION['signin'] = "Incorrect password";

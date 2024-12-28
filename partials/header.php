@@ -40,18 +40,20 @@ if(isset($_SESSION['user-id'])){
                 <li><a href="<?= ROOT_URL ?>services.php">Services</a></li>
                 <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
                 <?php if(isset($_SESSION['user-id'])): ?>
-                    <li class="nav__profile">
-                    <div class="avatar">
-                        <img src="<?= ROOT_URL . 'images/' . $avatar['avatar'] ?>">
-                    </div>
-                    <ul>
-                        <li><a href="<?= ROOT_URL ?>admin/index.php">Dashboard</a></li>
-                        <li><a href="<?= ROOT_URL ?>logout.php">logout</a></li>
-                    </ul>
-                </li>
-                <?php else: ?>
-                <li><a href="<?= ROOT_URL ?>signin.php">Signin</a></li>
-                <?php endif ?>
+    <li class="nav__profile">
+        <div class="avatar">
+            <img src="<?= ROOT_URL . 'images/' . $avatar['avatar'] ?>" alt="User Avatar">
+        </div>
+        <ul>
+            <?php if(isset($_SESSION['user_is_admin'])): ?>
+                <li><a href="<?= ROOT_URL ?>admin/index.php">Dashboard</a></li>
+            <?php endif ?>
+            <li><a href="<?= ROOT_URL ?>logout.php">Logout</a></li>
+        </ul>
+    </li>
+<?php else: ?>
+    <li><a href="<?= ROOT_URL ?>signin.php">Signin</a></li>
+<?php endif ?>
             </ul>
             <button id="open__nav-btn"><i class="uil uil-bars"></i></button>
             <button id="close__nav-btn"><i class="uil uil-multiply"></i></button>

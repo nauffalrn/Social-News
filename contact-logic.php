@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
                 unset($_SESSION['contact-data']);
 
                 // Set success message
-                $_SESSION['contact-success'] = "Thank you for contacting us! We will get back to you shortly.";
+                $_SESSION['contact-success'] = "Terima kasih telah mengisi formulir. Kami akan mempertimbangkan saran anda";
 
                 // Redirect to contact page
                 header('Location: ' . ROOT_URL . 'contact.php');

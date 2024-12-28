@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/constants.php';
-require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 require_once 'partials/header.php';
 
 // fetch current user's posts from the database

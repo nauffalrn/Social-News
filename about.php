@@ -28,7 +28,10 @@
 
         <h2>Bergabung dengan Kami</h2>
         <p>Daftarkan akun Anda untuk mendapatkan pengalaman penuh di Social News.</p>
-        <a href="signup.php" class="btn" style="margin-top: 30px; display: inline-block;">Daftar Sekarang</a>
+        
+        <?php if (!isset($_SESSION['user-id'])) : ?>
+            <a href="signup.php" class="btn" style="margin-top: 30px; display: inline-block;">Daftar Sekarang</a>
+        <?php endif ?>
     </div>
 </section>
 

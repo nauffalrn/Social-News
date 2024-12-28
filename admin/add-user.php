@@ -34,7 +34,7 @@ unset($_SESSION['add-user-data']);
             <input type="password" name="createpassword" value="<?= $createpassword ?>" placeholder="Create Password">
             <input type="password" name="confirmpassword" value="<?= $confirmpassword ?>" placeholder="Confirm Password">
             <select name="userrole">
-                <option value="0">Author</option>
+                <option value="0">User</option>
                 <option value="1">Admin</option>
             </select>
             <div class="form__control">

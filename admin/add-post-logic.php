@@ -1,5 +1,13 @@
 <?php
+session_start();
 require 'config/database.php';
+require 'partials/header.php';
+
+// Ensure the user is an admin
+if(!isset($_SESSION['user_is_admin'])) {
+    header('location: ' . ROOT_URL . 'signin.php');
+    die();
+}
 
 if(isset($_POST['submit'])) {
     $author_id = $_SESSION['user-id'];
