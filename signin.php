@@ -1,5 +1,5 @@
 <?php
-require 'config/constants.php';
+require_once 'config/constants.php';
 
 $username_email = $_SESSION['signin-data']['username_email'] ?? null;
 $password = $_SESSION['signin-data']['password'] ?? null;

@@ -15,7 +15,7 @@ $posts_result = mysqli_query($connection, $query);
         </form>
     </section>
 
-    <!--END OF SEARCH BAR-->
+    <!--END OF SEARCH BAR--> 
 
     <section class="posts <?= $featured ? '' : 'section__extra-margin' ?>">
         <div class="container posts__container">

@@ -1,5 +1,5 @@
 <?php
-require 'config/constants.php';
+require_once 'config/constants.php';
 
 //destroy all session variables and redirect to login page
 session_destroy();

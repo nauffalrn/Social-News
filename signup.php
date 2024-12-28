@@ -1,5 +1,5 @@
 <?php
-require 'config/constants.php';
+require_once 'config/constants.php';
 
 //get signup form data if signup button was clicked
 $firstname = $_SESSION['signup-data']['firstname'] ?? null;
