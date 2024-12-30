@@ -1,6 +1,6 @@
 <?php
-// filepath: /home/site/wwwroot/config/database.php
-require_once __DIR__ . '/constants.php';
+// filepath: /home/site/wwwroot/admin/config/database.php
+require_once __DIR__ . '/../../config/constants.php';
 
 // Connect to the database
 $connection = mysqli_init();
