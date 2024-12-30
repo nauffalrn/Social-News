@@ -1,8 +1,0 @@
-{
-    "scripts": {
-        "test": "phpunit"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^11.5"
-    }
-}
