@@ -5,9 +5,11 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 define('ROOT_URL', 'http://localhost/socialnews/');
-define('DB_HOST','localhost');
-define('DB_USER','agung');
-define('DB_PASS','agung123');
+define('DB_HOST','socialnews.mysql.database.azure.com');
+define('DB_PORT', 3306);
+define('DB_USER','socialnews');
+define('DB_PASS','Admin123');
+define('SSL_MODE','require');
 define('DB_NAME','socialnews');
 
 ?>
