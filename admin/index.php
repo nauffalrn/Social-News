@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/../config/constants.php';
 require_once __DIR__ . '/../config/database.php';
+if ($_SERVER['REQUEST_URI'] === '/admin/add-post-logic.php') {
+    include __DIR__ . '/admin/add-post-logic.php';
+    exit();
+}
+
 require_once 'partials/header.php';
 
 // fetch current user's posts from the database
