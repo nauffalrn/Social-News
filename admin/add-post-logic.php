@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once '../../config/database.php'; // Adjust the path as needed
+require_once __DIR__ . '/../../config/database.php';
+
 
 // Enable detailed error reporting (for development only)
 ini_set('display_errors', 1);
