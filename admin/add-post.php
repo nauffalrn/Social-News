@@ -27,7 +27,7 @@ unset($_SESSION['add-post-data']);
         <?php endif ?>
         <form action="<?= ROOT_URL ?>admin/add-post-logic.php" enctype="multipart/form-data" method="post">
             <input type="text" name="title" value="<?= $title ?>" placeholder="Title">
-            <select name="category">
+            <select name="category_id">
                 <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
                     <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
                 <?php endwhile ?>

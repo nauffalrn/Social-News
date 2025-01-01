@@ -1,7 +1,11 @@
 <?php
 session_start();
-require 'config/database.php';
-require 'partials/header.php';
+require_once '../../config/database.php'; // Adjust the path as needed
+
+// Enable detailed error reporting (for development only)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Ensure the user is an admin
 if(!isset($_SESSION['user_is_admin'])) {
@@ -9,59 +13,58 @@ if(!isset($_SESSION['user_is_admin'])) {
     die();
 }
 
+// Check if the form is submitted
 if(isset($_POST['submit'])) {
+    // Retrieve and sanitize form data
+    $title = mysqli_real_escape_string($connection, $_POST['title']);
+    $body = mysqli_real_escape_string($connection, $_POST['body']);
+    $category_id = intval($_POST['category_id']);
     $author_id = $_SESSION['user-id'];
-    $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    // Allow <b> and <strong> tags in the body
-    $body = strip_tags($_POST['body'], '<b><strong><p><br>');
-    $category_id = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
-    $is_featured = filter_var($_POST['is_featured'], FILTER_SANITIZE_NUMBER_INT);
-    $thumbnail = $_FILES['thumbnail'];
+    $is_featured = isset($_POST['is_featured']) ? 1 : 0;
 
-    // Set is_featured to 0 if not checked
-    $is_featured = $is_featured == 1 ? 1 : 0;
+    // Handle file upload
+    if(isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK){
+        $fileTmpPath = $_FILES['thumbnail']['tmp_name'];
+        $fileName = $_FILES['thumbnail']['name'];
+        $fileSize = $_FILES['thumbnail']['size'];
+        $fileType = $_FILES['thumbnail']['type'];
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
 
-    // Check if all fields are filled
-    if(!$title) {
-        $_SESSION['add-post'] = "Please enter a title";
-    } elseif(!$category_id) {
-        $_SESSION['add-post'] = "Please select a category";
-    } elseif(!$body) {
-        $_SESSION['add-post'] = "Please enter a post body";
-    } elseif (!$thumbnail['name']) {
-        $_SESSION['add-post'] = "Please upload a thumbnail";
-    } else {
-        if($is_featured) {
-            // Unset is_featured for all other posts
-            $unset_featured_query = "UPDATE posts SET is_featured = 0 WHERE is_featured = 1";
-            mysqli_query($connection, $unset_featured_query);
-        }
+        // Sanitize file name
+        $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 
-        // Rename the image file
-        $time = time(); // Make the thumbnail name unique
-        $thumbnail_name = $time . '_' . $thumbnail['name'];
-        $thumbnail_tmp_name = $thumbnail['tmp_name'];
-        $thumbnail_destination_path = '../images/' . $thumbnail_name;
+        // Check allowed file extensions
+        $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+        if (in_array($fileExtension, $allowedfileExtensions)) {
+            // Directory in which the uploaded file will be moved
+            $uploadFileDir = '../../images/';
+            $dest_path = $uploadFileDir . $newFileName;
 
-        // Move the uploaded file
-        move_uploaded_file($thumbnail_tmp_name, $thumbnail_destination_path);
+            if(move_uploaded_file($fileTmpPath, $dest_path)) {
+                // Insert post into database using prepared statements
+                $stmt = $connection->prepare("INSERT INTO posts (title, body, thumbnail, category_id, author_id, is_featured) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssiii", $title, $body, $newFileName, $category_id, $author_id, $is_featured);
 
-        // Insert post into database
-        $query = "INSERT INTO posts (title, body, thumbnail, category_id, author_id, is_featured) VALUES ('$title', '$body', '$thumbnail_name', $category_id, $author_id, $is_featured)";
-        $result = mysqli_query($connection, $query);
-
-        if($result) {
-            // Redirect to admin index page
-            $_SESSION['add-post-success'] = "New post added successfully";
-            header('Location: ' . ROOT_URL . 'admin/index.php');
-            exit();
+                if($stmt->execute()) {
+                    $_SESSION['add-post-success'] = "New post added successfully";
+                    header('Location: ../index.php');
+                    exit();
+                } else {
+                    $_SESSION['add-post'] = "Failed to add post: " . $stmt->error;
+                }
+            } else {
+                $_SESSION['add-post'] = "There was an error uploading the file.";
+            }
         } else {
-            $_SESSION['add-post'] = "Failed to add post";
+            $_SESSION['add-post'] = "Upload failed. Allowed file types: " . implode(',', $allowedfileExtensions);
         }
+    } else {
+        $_SESSION['add-post'] = "No file uploaded or there was an upload error.";
     }
 
     // Redirect back to add-post page if there is an error
-    header('Location: ' . ROOT_URL . 'admin/add-post.php');
+    header('Location: ../add-post.php');
     exit();
 }
 ?>
