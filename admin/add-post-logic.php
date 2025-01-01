@@ -1,7 +1,6 @@
 <?php
 session_start();
-file_put_contents('debug_log.txt', "add-post-logic.php accessed\n", FILE_APPEND);
-require_once __DIR__ . '/../../config/database.php';
+require 'config/database.php';
 
 
 // Enable detailed error reporting (for development only)
