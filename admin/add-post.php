@@ -25,7 +25,7 @@ unset($_SESSION['add-post-data']);
             </p>
         </div>
         <?php endif ?>
-        <form action="/admin/add-post-logic.php" enctype="multipart/form-data" method="post">
+        <form action="<?= ROOT_URL ?>admin/add-post-logic.php" enctype="multipart/form-data" method="post">
             <input type="text" name="title" value="<?= $title ?>" placeholder="Title">
             <select name="category_id">
                 <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
