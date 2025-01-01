@@ -72,7 +72,7 @@ if(isset($_GET['id'])) {
                         </div>
                     </div>
             <div class="singlepost__thumbnail">
-                <img src="./images/<?= $post['thumbnail'] ?>">
+            <img src="https://socialnews.azurewebsites.net/images/<?= $post['thumbnail'] ?>" alt="Thumbnail">
             </div>
             <div class="post__body">
                 <?= $body ?>

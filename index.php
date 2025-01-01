@@ -19,7 +19,7 @@ $posts_result = mysqli_query($connection, $posts_query);
     <section class="featured">
         <div class="container featured__container">
             <div class="post__thumbnail">
-                <img src="./images/<?= $featured['thumbnail'] ?>">
+            <img src="https://socialnews.azurewebsites.net/images/<?= $post['thumbnail'] ?>" alt="Thumbnail">
             </div>
             <div class="post__info">
                 <?php
@@ -64,7 +64,7 @@ $posts_result = mysqli_query($connection, $posts_query);
             <?php while($post = mysqli_fetch_assoc($posts_result)) : ?>
             <article class="post">
                 <div class="post__thumbnail">
-                    <img src="./images/<?= $post['thumbnail'] ?>">
+                <img src="https://socialnews.azurewebsites.net/images/<?= $post['thumbnail'] ?>" alt="Thumbnail">
                 </div>
                 <div class="post__info">
                 <?php
