@@ -19,7 +19,7 @@ $posts_result = mysqli_query($connection, $posts_query);
     <section class="featured">
         <div class="container featured__container">
             <div class="post__thumbnail">
-            <img src="https://socialnews.azurewebsites.net/images/<?= $post['thumbnail'] ?>" alt="Thumbnail">
+            <img src="<?= ROOT_URL ?>images/<?= $featured['thumbnail'] ?>" alt="Thumbnail">
             </div>
             <div class="post__info">
                 <?php

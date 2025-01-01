@@ -59,7 +59,7 @@ if(isset($_POST['submit'])) {
         $_SESSION['add-post'] = "No file uploaded or there was an upload error.";
     }
 
-    header('Location: index.php');
+    header('Location: ../add-post.php');
     exit();
 }
 ?>
