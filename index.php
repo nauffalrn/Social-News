@@ -19,7 +19,7 @@ $posts_result = mysqli_query($connection, $posts_query);
     <section class="featured">
         <div class="container featured__container">
             <div class="post__thumbnail">
-            <img src="<?= ROOT_URL ?>images/<?= $featured['thumbnail'] ?>" alt="Thumbnail">
+                <img src="<?= ROOT_URL ?>images/<?= $featured['thumbnail'] ?>">
             </div>
             <div class="post__info">
                 <?php
@@ -43,7 +43,7 @@ $posts_result = mysqli_query($connection, $posts_query);
                             $author = mysqli_fetch_assoc($author_result);
                         ?>
                         <div class="post__author-avatar">
-                            <img src="./images/<?= $author['avatar'] ?>">
+                            <img src="<?= ROOT_URL ?>images/<?= $author['avatar'] ?>">
                         </div>
                         <div class="post__author-info">
                             <h5>By: <?= "{$author['firstname']} {$author['lastname']}" ?></h5>
@@ -64,7 +64,7 @@ $posts_result = mysqli_query($connection, $posts_query);
             <?php while($post = mysqli_fetch_assoc($posts_result)) : ?>
             <article class="post">
                 <div class="post__thumbnail">
-                <img src="https://socialnews.azurewebsites.net/images/<?= $post['thumbnail'] ?>" alt="Thumbnail">
+                    <img src="<?= ROOT_URL ?>images/<?= $post['thumbnail'] ?>">
                 </div>
                 <div class="post__info">
                 <?php
@@ -89,7 +89,7 @@ $posts_result = mysqli_query($connection, $posts_query);
                             $author = mysqli_fetch_assoc($author_result);
                         ?>
                         <div class="post__author-avatar">
-                            <img src="./images/<?= $author['avatar'] ?>">
+                            <img src="<?= ROOT_URL ?>images/<?= $author['avatar'] ?>">
                         </div>
                         <div class="post__author-info">
                         <h5>By: <?= "{$author['firstname']} {$author['lastname']}" ?></h5>

@@ -71,9 +71,9 @@ if(isset($_GET['id'])) {
                             </small>
                         </div>
                     </div>
-            <div class="singlepost__thumbnail">
-            <img src="https://socialnews.azurewebsites.net/images/<?= $post['thumbnail'] ?>" alt="Thumbnail">
-            </div>
+            <div class="post__thumbnail">
+    <img src="<?= ROOT_URL ?>images/<?= $post['thumbnail'] ?>">
+</div>
             <div class="post__body">
                 <?= $body ?>
             </div>

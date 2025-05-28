@@ -4,12 +4,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-define('ROOT_URL', 'https://socialnews.azurewebsites.net/');
-define('DB_HOST','socialnews.mysql.database.azure.com');
-define('DB_PORT', 3306);
-define('DB_USER','socialnews');
-define('DB_PASS','Admin123');
-define('SSL_MODE','require');
+define('ROOT_URL', 'http://localhost/IPPL-FULL/');
+define('DB_HOST','localhost:3307');
+define('DB_USER','root');
+define('DB_PASS','nauffalaja');
 define('DB_NAME','socialnews');
 
 ?>

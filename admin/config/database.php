@@ -1,13 +1,18 @@
 <?php
-// filepath: /home/site/wwwroot/admin/config/database.php
 require_once __DIR__ . '/../../config/constants.php';
 
-// Connect to the database
-$connection = mysqli_init();
-$connection->ssl_set(NULL, NULL, __DIR__ . '/DigiCertGlobalRootCA.crt.pem', NULL, NULL);
-$connection->real_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT, NULL, MYSQLI_CLIENT_SSL);
+// Parse host dan port
+$host_parts = explode(':', DB_HOST);
+$host = $host_parts[0];
+$port = isset($host_parts[1]) ? (int)$host_parts[1] : 3306;
+
+// Connect dengan port spesifik
+$connection = mysqli_connect($host, DB_USER, DB_PASS, DB_NAME, $port);
 
 if(!$connection){
     die("Connection Failed: " . mysqli_connect_error());
 }
+
+// Set charset untuk menghindari masalah encoding
+mysqli_set_charset($connection, "utf8");
 ?>

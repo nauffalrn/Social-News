@@ -1,17 +1,9 @@
 <?php
 require_once __DIR__ . '/../config/constants.php';
 require_once __DIR__ . '/../config/database.php';
-if ($_SERVER['REQUEST_URI'] === '/admin/add-post-logic.php') {
-    include __DIR__ . '/admin/add-post-logic.php';
-    exit();
-}
-
 require_once 'partials/header.php';
 
-// fetch current user's posts from the database
-$current_user_id = $_SESSION['user-id'];
-$query = "SELECT id, title, category_id FROM posts 
-WHERE author_id = $current_user_id ORDER BY id DESC";
+$query = "SELECT id, title, category_id, author_id FROM posts ORDER BY id DESC";
 $posts = mysqli_query($connection, $query);
 ?>
 
@@ -82,6 +74,7 @@ $posts = mysqli_query($connection, $query);
                     <tr>
                         <th>Title</th>
                         <th>Category</th>
+                        <th>Author</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -94,10 +87,17 @@ $posts = mysqli_query($connection, $query);
                             $category_query = "SELECT title FROM categories WHERE id = $category_id";
                             $category = mysqli_query($connection, $category_query);
                             $category = mysqli_fetch_assoc($category);
+
+                            // fetch author name
+                            $author_id = $post['author_id'];
+                            $author_query = "SELECT firstname, lastname FROM users WHERE id = $author_id";
+                            $author_result = mysqli_query($connection, $author_query);
+                            $author = mysqli_fetch_assoc($author_result);
                          ?>
                     <tr>
                         <td><?= $post['title'] ?></td>
                         <td><?= $category['title'] ?></td>
+                        <td><?= $author['firstname'] . ' ' . $author['lastname'] ?></td>
                         <td><a href="<?= ROOT_URL ?>admin/edit-post.php?id=<?= $post['id'] ?> " class="btn sm">Edit</a></td>
                         <td><a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?> " class="btn sm danger">Delete</a></td>
                     </tr>
