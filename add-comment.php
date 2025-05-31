@@ -11,20 +11,29 @@ if(isset($_POST['submit'])) {
         if($comment_text) {
             $comment_text = mysqli_real_escape_string($connection, $comment_text);
             $insert_query = "INSERT INTO comments (user_id, post_id, comment_text) VALUES ($user_id, $post_id, '$comment_text')";
-            mysqli_query($connection, $insert_query);
+            $result = mysqli_query($connection, $insert_query);
+
+            if($result) {
+                $_SESSION['comment-success'] = "Komentar berhasil ditambahkan! 💬";
+            } else {
+                $_SESSION['comment-error'] = "Gagal menambahkan komentar. Coba lagi!";
+            }
 
             // Redirect back to the post page with post id
             header('Location: ' . ROOT_URL . 'post.php?id=' . $post_id);
+            exit();
         } else {
-            $_SESSION['add-comment'] = "Please enter a comment.";
+            $_SESSION['comment-error'] = "Komentar tidak boleh kosong!";
             header('Location: ' . ROOT_URL . 'post.php?id=' . $post_id);
+            exit();
         }
     } else {
         $_SESSION['signin'] = 'Please signin to comment.';
         header('Location: ' . ROOT_URL . 'signin.php');
+        exit();
     }
 } else {
     header('Location: ' . ROOT_URL . 'index.php');
+    exit();
 }
-die();
 ?>
